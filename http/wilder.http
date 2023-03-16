@@ -1,0 +1,37 @@
+POST http://localhost:5000/api/wilder
+Content-Type: application/json
+
+{
+  "name": "chris",
+  "email": "c.c@gmail.com",
+  "city": "Lyon"
+}
+
+###
+
+GET  http://localhost:5000/api/wilder
+
+###
+
+PUT  http://localhost:5000/api/wilder/2/update
+Content-Type: application/json
+
+{
+  "name": "christopher",
+  "email": "chris.c@gmail.com",
+  "city": "Lyon"
+}
+
+
+###
+
+DELETE  http://localhost:5000/api/wilder/1/delete
+
+###
+
+POST  http://localhost:5000/api/wilder/3/skill/3/add
+
+
+###
+
+DELETE  http://localhost:5000/api/wilder/1/skill/1/delete

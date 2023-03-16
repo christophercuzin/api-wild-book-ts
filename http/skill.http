@@ -1,0 +1,24 @@
+POST http://localhost:5000/api/skill
+Content-Type: application/json
+
+{
+  "name": "Vue.js"
+}
+
+###
+
+GET  http://localhost:5000/api/skill
+
+###
+
+PUT  http://localhost:5000/api/skill/1/update
+Content-Type: application/json
+
+{
+  "name": "React"
+}
+
+
+###
+
+DELETE  http://localhost:5000/api/skill/3/delete
