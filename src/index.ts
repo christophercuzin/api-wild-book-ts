@@ -1,6 +1,8 @@
 import express, {json} from "express";
 import cors from "cors";
 import { dataSource } from "./utils";
+import multer from "multer";
+import path from "path"
 
 import { WildersController } from "./controller/WildersController";
 import { SkillsController } from "./controller/SkillsController";
@@ -9,12 +11,16 @@ import { GradesController } from "./controller/GradesController";
 const app = express();
 app.use(json());
 app.use(cors({ origin: "http://localhost:3000" }));
+app.use(express.static(path.join(__dirname, "./images")));
+
+const upload = multer({ dest: "images/" });
+
 
 const wilderController = new WildersController();
 const skillController = new SkillsController();
 const gradeController = new GradesController();
 
-app.post("/api/wilder", wilderController.create);
+app.post("/api/wilder", upload.single("picture"), wilderController.create);
 app.post(
   "/api/wilder/:wilderId/skill/:skillId/add",
   wilderController.addSkill
@@ -26,6 +32,7 @@ app.delete(
   "/api/wilder/:wilderId/skill/:skillId/delete",
   wilderController.deleteSkill
 );
+
 
 app.post("/api/skill", skillController.create);
 app.get("/api/skill", skillController.read);

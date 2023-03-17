@@ -3,11 +3,19 @@ import { WildersEntity } from "../entity/WildersEntity";
 import { SkillsEntity } from "../entity/SkillsEntity";
 import { Request, Response } from "express";
 
+
 export class WildersController {
   
   async create(req: Request, res: Response): Promise<void> {
+    const picture = req.file?.filename;
+    const name = req.body.name;
+    const email = req.body.email;
+    const city = req.body.city;
+
     try {
-      await dataSource.getRepository(WildersEntity).save(req.body);
+      await dataSource
+        .getRepository(WildersEntity)
+        .save({ name, email, city, picture });
       res.status(201).send("wilder created");
     } catch (error) {
       if ((error as { errno: number }).errno === 19) {

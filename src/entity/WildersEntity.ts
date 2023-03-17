@@ -25,6 +25,9 @@ export class WildersEntity {
   @Column()
   city: string;
 
+  @Column()
+  picture: string;
+
   @OneToMany(() => GradesEntity, (rate) => rate.wilder)
   rates: GradesEntity[];
 
